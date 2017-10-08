@@ -50,6 +50,7 @@ function OszlopFel (magas)
 end
 
 function EpitekHazat(magas, szeles)
+
 	for i=1,2 do 
 		EpitekFalat(magas, szeles)
 		turtle.forward()
@@ -67,7 +68,33 @@ function EpitekHazat(magas, szeles)
 			turtle.down()
 		end
 	end
+ 
+	EpitekAjtot()
+	EpitekAblakot()
 end
+
+function EpitekAjtot()
+	turtle.back()
+	turtle.turnRight()
+	turtle.up()
+	turtle.dig()
+	turtle.down()
+	turtle.dig()
+	turtle.select(2)
+	turtle.place()
+end
+
+function EpitekAblakot()
+	turtle.turnRight()
+	turtle.forward()
+	turtle.forward()
+	turtle.turnLeft()
+	turtle.up()
+	turtle.dig()
+	turtle.select(3)
+	turtle.place()
+	turtle.down()
+end	
 
 
 EszekHaKell(100)
