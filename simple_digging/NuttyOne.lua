@@ -1,16 +1,44 @@
 
 local util = dofile("util.lua")
+util.hello()
 
 function GoDown(times)
+	local bedrock = false
+	
 	for i=1, times do
 		turtle.dig()
 		turtle.forward()
+		
+		see, block = turtle.inspect()
+		if see and block.name == "minecraft:bedrock" then
+			bedrock = true
+			
+			print("Elertem az aljat :)")
+			-- break
+			
+			turtle.up()
+		end
+		
 		turtle.digUp()
 		turtle.digDown()
-		turtle.down()
+		
+		if i % 8 == 0 then
+			PlaceTorch()
+		end
+		
+		if not bedrock then
+			turtle.down()
+		end
 	end
 end
 
-util.hello()
+function PlaceTorch()
+	util.turn()
+	
+	util.select("minecraft:torch")
+	turtle.place()
+	
+	util.turn()
+end
 
--- GoDown(10)
+GoDown(100)
