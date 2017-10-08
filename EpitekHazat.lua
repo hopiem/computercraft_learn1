@@ -8,6 +8,21 @@ function EszekHaKell(kaja)
   end
 end
 
+function HatizsakKivalaszt(targy)
+	for i=1,16 do
+		info = turtle.getItemDetail(i)
+		if info then
+			if info.name == targy then
+				turtle.select(i)
+			else
+				print(i .. ". mas van benne " .. info.name)
+			end
+		else
+			print(i .. ". ures a zseb")
+		end
+	end
+end
+
 function EpitekFalat(magas, szeles)
   turtle.select(1)
   
