@@ -16,4 +16,9 @@ function util.select(name)
 	end
 end
 
+function util.turn()
+	turtle.turnLeft()
+	turtle.turnLeft()
+end
+
 return util
