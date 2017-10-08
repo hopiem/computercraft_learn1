@@ -7,7 +7,7 @@ function EszekHaKell(kaja)
     end
   end
 end
-
+	
 function HatizsakKivalaszt(targy)
 	for i=1,16 do
 		info = turtle.getItemDetail(i)
@@ -24,7 +24,8 @@ function HatizsakKivalaszt(targy)
 end
 
 function EpitekFalat(magas, szeles)
-  turtle.select(1)
+  HatizsakKivalaszt("minecraft:planks")
+
   
   for i=1,magas do
 	for o=1,szeles do
@@ -41,7 +42,7 @@ function EpitekFalat(magas, szeles)
 end
 
 function EpitekUtsoFalat(magas, szeles)
-  turtle.select(1)
+  HatizsakKivalaszt("minecraft:planks")
   
   for i=1,magas do
 	for o=1,szeles do
@@ -86,6 +87,7 @@ function EpitekHazat(magas, szeles)
  
 	EpitekAjtot()
 	EpitekAblakot()
+	EpitekTetot()
 end
 
 function EpitekAjtot()
@@ -95,7 +97,7 @@ function EpitekAjtot()
 	turtle.dig()
 	turtle.down()
 	turtle.dig()
-	turtle.select(2)
+	HatizsakKivalaszt("minecraft:dark_oak_door")
 	turtle.place()
 end
 
@@ -104,13 +106,34 @@ function EpitekAblakot()
 	turtle.forward()
 	turtle.forward()
 	turtle.turnLeft()
+	
 	turtle.up()
 	turtle.dig()
-	turtle.select(3)
+	
+	HatizsakKivalaszt("minecraft:glass_pane")
+	
 	turtle.place()
 	turtle.down()
 end	
 
+function EpitekTetot()
+	HatizsakKivalaszt("minecraft:planks")
+
+	turtle.up()
+	turtle.up()
+	turtle.up()
+	
+	for i=1,3 do
+		turtle.forward()
+		turtle.forward()
+		turtle.placeDown()
+		turtle.forward()
+		turtle.placeDown()
+		turtle.turnLeft()
+		turtle.forward()
+		turtle.turnLeft()
+	end
+end
 
 EszekHaKell(100)
 EpitekHazat(3, 3)
