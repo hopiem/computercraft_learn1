@@ -25,7 +25,6 @@ end
 
 function EpitekFalat(magas, szeles)
   HatizsakKivalaszt("minecraft:planks")
-
   
   for i=1,magas do
 	for o=1,szeles do
@@ -118,22 +117,99 @@ end
 
 function EpitekTetot()
 	HatizsakKivalaszt("minecraft:planks")
-
-	turtle.up()
-	turtle.up()
-	turtle.up()
 	
-	for i=1,3 do
+	for i=1,1 do
 		turtle.forward()
 		turtle.forward()
+		
 		turtle.placeDown()
 		turtle.forward()
 		turtle.placeDown()
 		turtle.turnLeft()
+		
 		turtle.forward()
+		turtle.placeDown()
 		turtle.turnLeft()
+		
+		turtle.forward()
+		turtle.placeDown()
+		turtle.turnRight()
+		
+		turtle.forward()
+		turtle.placeDown()
+		turtle.turnRight()
+		
+		turtle.forward()
+		turtle.placeDown()
+		
 	end
 end
 
-EszekHaKell(100)
-EpitekHazat(3, 3)
+function MedenceAsas(szeles, hosszu, mely)
+	for i=1,mely do
+		for i=1,hosszu do
+		
+			for i=1,szeles do
+				turtle.digDown()
+				turtle.forward()
+			end
+		
+			if i % 2 == 0 then
+				turtle.turnRight()
+				turtle.turnForward()
+				turtle.turnRight()
+				else
+				turtle.turnLeft()
+				turtle.turnForward()
+				turtle.turnLeft()
+			end
+			
+		end
+		if mely>1 then
+			turtle.down()
+		end
+	end
+end
+
+function MedenceFeltoltes()
+	for i=1,mely do
+		for i=1,hosszu do
+		
+			for i=1,szeles do
+				turtle.()
+				turtle.forward()
+			end
+		
+			if i % 2 == 0 then
+				turtle.turnRight()
+				turtle.turnForward()
+				turtle.turnRight()
+				else
+				turtle.turnLeft()
+				turtle.turnForward()
+				turtle.turnLeft()
+			end
+			
+		end
+		if mely>1 then
+			turtle.down()
+		end
+	end
+end
+
+function MuugroTorony()
+
+end
+
+function Medence()
+	MedenceAsas()
+	MedenceFeltoltes()
+	MuugroTorony()
+end
+
+
+-- EszekHaKell(100)
+-- EpitekHazat(3, 3)
+-- EpitekTetot()
+
+MedenceAsas(2, 3, 1)
