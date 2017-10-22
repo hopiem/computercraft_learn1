@@ -147,50 +147,69 @@ end
 
 function MedenceAsas(szeles, hosszu, mely)
 	for i=1,mely do
-		for i=1,hosszu do
+		for j=1,hosszu do
 		
-			for i=1,szeles do
-				turtle.digDown()
+			for k=1,szeles do
+				LeAs(i.."/"..j.."/"..k)
 				turtle.forward()
+				LeAs(i.."/"..j.."/"..k)
 			end
 		
-			if i % 2 == 0 then
+			if j % 2 == 0 then
 				turtle.turnRight()
-				turtle.turnForward()
+				turtle.forward()
 				turtle.turnRight()
-				else
+			else
 				turtle.turnLeft()
-				turtle.turnForward()
+				turtle.forward()
 				turtle.turnLeft()
 			end
 			
 		end
+		
 		if mely>1 then
 			turtle.down()
 		end
 	end
 end
 
-function MedenceFeltoltes()
+function LeAs(info)
+	sikerult, hibauzenet = turtle.digDown()
+	
+	if sikerult then 
+		print("Sikerult leasni " .. info)
+	else
+		print("Nem sikerult leasni " .. hibauzenet .. " - " .. info)
+	end
+end
+
+function MedenceFeltoltes(mely, hosszu, szeles)
 	for i=1,mely do
-		for i=1,hosszu do
+		for j=1,hosszu do
 		
-			for i=1,szeles do
-				turtle.()
+			for k=1,szeles do
 				turtle.forward()
 			end
 		
-			if i % 2 == 0 then
+			if j % 2 == 0 then
 				turtle.turnRight()
-				turtle.turnForward()
+				turtle.forward()
 				turtle.turnRight()
-				else
+				print("Páros Fel!")
+				turtle.up()
+				HatizsakKivalaszt("minecraft:Water Bucket")
+				turtle.placeDown()
+			else
 				turtle.turnLeft()
-				turtle.turnForward()
+				turtle.forward()
 				turtle.turnLeft()
+				print("Páros Fel!")
+				HatizsakKivalaszt("minecraft:Water Bucket")
+				turtle.placeDown()
 			end
 			
 		end
+		
 		if mely>1 then
 			turtle.down()
 		end
@@ -198,7 +217,21 @@ function MedenceFeltoltes()
 end
 
 function MuugroTorony()
-
+	for i=1,1 do
+		turtle.up()
+		turtle.turnRight()
+		turtle.forward()
+		for j=1,2 do
+			turtle.up()
+			HatizsakKivalaszt("minecraft:stone")
+			turtle.placeDown()
+			for k=1,1 do
+				turtle.back()
+				HatizsakKivalaszt("minecraft:ston")
+				turtle.placeDown()
+			end
+		end
+	end	
 end
 
 function Medence()
@@ -212,4 +245,6 @@ end
 -- EpitekHazat(3, 3)
 -- EpitekTetot()
 
-MedenceAsas(2, 3, 1)
+MedenceAsas(2, 3, 3)
+MedenceFeltoltes(2,3,2)
+MuugroTorony()
