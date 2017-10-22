@@ -9,11 +9,15 @@ function util.select(name)
 		info = turtle.getItemDetail(i)
 		
 		if info then
-			if info.name == name then
+			if string.find(info.name, name) then
 				turtle.select(i)
+				
+				return true
 			end
 		end
 	end
+	
+	return false
 end
 
 function util.turn()
