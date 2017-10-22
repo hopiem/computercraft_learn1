@@ -1,4 +1,6 @@
---[[Copyright PrinceTommen - Script developed for CyanideEpic (twitch.tv/cyanideepic)]]--
+--[[Copyright PrinceTommen - Script developed for CyanideEpic (twitch.tv/cyanideepic) - JAN 26TH, 2013]]--
+-- ?? 1.48 version http://www.computercraft.info/2012/12/27/computercraft-1-481-miscperipherals-fix/ ??
+-- http://www.computercraft.info/wiki/Changelog
 --[[You are all allowed to use it as long as you don't pretend it's yours]]--
 --[[Have fun !]]--
 version =" 3.5"
