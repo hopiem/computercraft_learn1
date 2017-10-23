@@ -4,12 +4,12 @@ function util.hello()
 	print("Hello from util :) v0.3")
 end
 
-function util.select(name)
+function util.select(pname)
 	for i=1, 16 do
 		info = turtle.getItemDetail(i)
 		
 		if info then
-			if string.find(info.name, name) then
+			if string.find(info.name, pname) then
 				turtle.select(i)
 				
 				return true
@@ -20,7 +20,7 @@ function util.select(name)
 	return false
 end
 
-function util.printItems(name)
+function util.printItems()
 	for i=1, 16 do
 		info = turtle.getItemDetail(i)
 		
