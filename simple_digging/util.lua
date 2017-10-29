@@ -1,15 +1,15 @@
 local util = {}
 
 function util.hello()
-	print("Hello from util :) v0.3")
+	print("Hello from util :) v0.4 - moves by Godzzo")
 end
 
-function util.select(pname)
+function util.select(name)
 	for i=1, 16 do
 		info = turtle.getItemDetail(i)
 		
 		if info then
-			if string.find(info.name, pname) then
+			if string.find(info.name, name) then
 				turtle.select(i)
 				
 				return true
@@ -20,7 +20,7 @@ function util.select(pname)
 	return false
 end
 
-function util.printItems()
+function util.printItems(name)
 	for i=1, 16 do
 		info = turtle.getItemDetail(i)
 		
@@ -39,7 +39,7 @@ function util.lookAround()
 	end
 	
 	lookInfo("up", look, turtle.inspectUp())
-	lookInfo("down", look, turtle.inspectDown())
+	lookInfo("down", look, turtle.inspectUp())
 	
 	util.printTable(look)
 	
@@ -80,6 +80,46 @@ function digInfo(info, ok, msg)
 	end
 	if not ok then
 		print("Nem sikerült felfele ásni " .. msg .. " / " .. info)
+	end
+end
+
+function util.moveForward()
+	util.safeForward()
+end
+
+function util.moveLeft()
+	turtle.turnLeft()
+	
+	util.safeForward()
+	
+	turtle.turnRight()
+end
+
+function util.moveRight()
+	turtle.turnRight()
+	
+	util.safeForward()
+	
+	turtle.turnLeft()
+end
+
+function util.moveBack()
+	util.turn()
+	
+	util.safeForward()
+	
+	util.turn()
+end
+
+function util.safeForward()
+	see, info = turtle.inspect()
+	
+	if see then
+		if turtle.dig() then
+			turtle.forward()
+		end
+	else
+		turtle.forward()
 	end
 end
 
