@@ -1,7 +1,7 @@
 local util = {}
 
 function util.hello()
-	print("Hello from util :) v0.4 - moves by Godzzo")
+	print("Hello from util :) v0.4 - moves :)")
 end
 
 function util.select(name)
@@ -14,6 +14,22 @@ function util.select(name)
 				
 				return true
 			end
+		end
+	end
+	
+	return false
+end
+
+function util.place(name)
+	if util.select(name) then
+		see, info = turtle.inspect()
+		
+		if see then
+			if turtle.dig() then
+				return turtle.place()
+			end
+		else
+			return turtle.place()
 		end
 	end
 	
@@ -79,36 +95,42 @@ function digInfo(info, ok, msg)
 		info = ""
 	end
 	if not ok then
-		print("Nem sikerült felfele ásni " .. msg .. " / " .. info)
+		print("Nem sikerült ásni " .. msg .. " / " .. info)
 	end
 end
 
 function util.moveForward()
-	util.safeForward()
+	return util.safeForward()
 end
 
 function util.moveLeft()
 	turtle.turnLeft()
 	
-	util.safeForward()
+	local success = util.safeForward()
 	
 	turtle.turnRight()
+	
+	return success
 end
 
 function util.moveRight()
 	turtle.turnRight()
 	
-	util.safeForward()
+	local success = util.safeForward()
 	
 	turtle.turnLeft()
+	
+	return success
 end
 
 function util.moveBack()
 	util.turn()
 	
-	util.safeForward()
+	local success = util.safeForward()
 	
 	util.turn()
+	
+	return success
 end
 
 function util.safeForward()
@@ -116,11 +138,85 @@ function util.safeForward()
 	
 	if see then
 		if turtle.dig() then
-			turtle.forward()
+			return turtle.forward()
 		end
 	else
-		turtle.forward()
+		return turtle.forward()
 	end
+	
+	return false
+end
+
+function util.moveUp()
+	see, info = turtle.inspectUp()
+	
+	if see then
+		if turtle.digUp() then
+			return turtle.up()
+		end
+	else
+		return turtle.up()
+	end
+	
+	return false
+end
+
+function util.wall(height, length, block)
+	for i=1, height do
+		for j=1, length do
+			if i % 2 == 0 then
+				util.place(block)
+				
+				if j < length then
+					util.moveLeft()
+				end
+			else 
+				util.place(block)
+				
+				if j < length then
+					util.moveRight()
+				end
+			end
+		end
+		
+		if i < height then
+			util.moveUp()
+		end
+	end
+	
+	util.wallBack(height, length)
+end
+
+function util.wallBack(height, length)
+	for i=1, height do
+		if i < height then
+			turtle.down()
+		end
+	end
+	
+	for i=1, length do
+		if length % 2 == 0 then
+			if i < length then
+				util.moveRight()
+			end
+		else 
+			if i < length then
+				util.moveLeft()
+			end
+		end
+	end
+end
+
+function util.turnRightCorner()
+	util.moveRight()
+	util.moveForward()
+	turtle.turnLeft()
+end
+
+function util.turnLeftCorner()
+	util.moveLeft()
+	util.moveForward()
+	turtle.turnRight()
 end
 
 return util
