@@ -55,7 +55,7 @@ function util.lookAround()
 	end
 	
 	lookInfo("up", look, turtle.inspectUp())
-	lookInfo("down", look, turtle.inspectUp())
+	lookInfo("down", look, turtle.inspectDown())
 	
 	util.printTable(look)
 	
