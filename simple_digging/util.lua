@@ -36,7 +36,7 @@ function util.place(name)
 	return false
 end
 
-function util.printItems(name)
+function util.printItems()
 	for i=1, 16 do
 		info = turtle.getItemDetail(i)
 		
