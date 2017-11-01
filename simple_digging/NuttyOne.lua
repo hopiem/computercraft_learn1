@@ -35,8 +35,11 @@ end
 function PlaceTorch()
 	util.turn()
 	
-	util.select("minecraft:torch")
-	turtle.place()
+	vanFaklya = util.select("minecraft:torch")
+	
+	if vanFaklya then
+		turtle.place()
+	end
 	
 	util.turn()
 end
