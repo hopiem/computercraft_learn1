@@ -1,3 +1,4 @@
+
 local util = {}
 
 function util.hello()
@@ -25,12 +26,18 @@ function util.place(name)
 		see, info = turtle.inspect()
 		
 		if see then
+			print("See something: " .. info.name)
 			if turtle.dig() then
+				print("Destroyed: " .. info.name)
 				return turtle.place()
+			else
+				print("Destroy - FAILED: " .. info.name)
 			end
 		else
 			return turtle.place()
 		end
+	else
+		print("NOT FOUND " .. name)
 	end
 	
 	return false
@@ -156,6 +163,20 @@ function util.moveUp()
 		end
 	else
 		return turtle.up()
+	end
+	
+	return false
+end
+
+function util.moveDown()
+	see, info = turtle.inspectDown()
+	
+	if see then
+		if turtle.digDown() then
+			return turtle.down()
+		end
+	else
+		return turtle.down()
 	end
 	
 	return false
